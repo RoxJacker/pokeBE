@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": "mn5m0vm58kmn4o",
+      "username": "Ash",
+      "email": "ash@pokemon.com",
+      "password": "Password123",
+      "friendCode": "DDRCTWAD",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": {
+        "endpoint": "https://fcm.googleapis.com/fcm/send/cbHOln6m4KU:APA91bHgPT4XLdHiyZk6APzYstqjcEOAg-oNtJlfDhWEJep1kmBPyKjmtnfjHgMvgdiCabXU8o8-nMYniax6a5dkctR9oKDQc_YovPixnodaia8zHJDe7hR6FNvN4IRXKaci8pQYxDpj",
+        "expirationTime": null,
+        "keys": {
+          "p256dh": "BI3PLJycwI8qMuEu6PoiaRqIQPsEURXUu3q866sXsi_CC7WRakXJV2c2xqVpKwme8jgqyd2qQ1Lv7F9JRDcaw0k",
+          "auth": "GeDyvx9N1DV1m8ibLfC6kQ"
+        }
+      },
+      "createdAt": "2026-03-25T05:35:27.245Z"
+    },
+    {
+      "id": "mn5m0xstmn9g1b",
+      "username": "Misty",
+      "email": "misty@pokemon.com",
+      "password": "Password123",
+      "friendCode": "JAXYZLWE",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": null,
+      "createdAt": "2026-03-25T05:35:30.077Z"
+    },
+    {
+      "id": "mn5mimyxnzhrhw",
+      "username": "Carlos",
+      "email": "carlos@example.com",
+      "password": "Carlos123",
+      "friendCode": "74XH7JKF",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": {
+        "endpoint": "https://wns2-bn3p.notify.windows.com/w/?token=BQYAAAC4rD%2bP9r5EZyhbCCGzOLoee0PGlVQqHMNJXEMtq%2fULuklezi8KL2nzJK57xQbGfqG6ORO7zHBTL%2bKV1pi%2brdSLATmGfqNbXRb%2flazLLakSEbgbACGB77Dv882Z%2buCaVKpGHanM9QaDyxCsP32Qgv0rugsERycelKDIGi7AfD9q0ST3QIr1oUFGSgtP2jHs5sqI9gPpMg1pjQzhK5insZjP6N7RyMx9NHVv1pt79Mm3MX3fwN%2fOS605CRQRItVam5Ehv2IKWGG9iw%2fGOn5zQB0tVTFfBH3LP3xCAVxae9RDpfc4Ed03k4ZBJ6woD9n6QK4xeHnqksllm0kkwg401hMq",
+        "expirationTime": null,
+        "keys": {
+          "p256dh": "BILVwyHnIXh6jW2o2Y0UhijBDPrqFh6Vr2tmkM7gWiledRio2iRwPTSdZ-e9koEdmXPolEQ1POuemxice-uatec",
+          "auth": "MQUm7lms48_GKxtYZwd2Jw"
+        }
+      },
+      "createdAt": "2026-03-25T05:49:15.850Z"
+    },
+    {
+      "id": "mn5mkw8usudnrj",
+      "username": "Lola",
+      "email": "lola@example.com",
+      "password": "Lola123",
+      "friendCode": "YYNS79NN",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": {
+        "endpoint": "https://wns2-bn3p.notify.windows.com/w/?token=BQYAAAC4rD%2bP9r5EZyhbCCGzOLoee0PGlVQqHMNJXEMtq%2fULuklezi8KL2nzJK57xQbGfqG6ORO7zHBTL%2bKV1pi%2brdSLATmGfqNbXRb%2flazLLakSEbgbACGB77Dv882Z%2buCaVKpGHanM9QaDyxCsP32Qgv0rugsERycelKDIGi7AfD9q0ST3QIr1oUFGSgtP2jHs5sqI9gPpMg1pjQzhK5insZjP6N7RyMx9NHVv1pt79Mm3MX3fwN%2fOS605CRQRItVam5Ehv2IKWGG9iw%2fGOn5zQB0tVTFfBH3LP3xCAVxae9RDpfc4Ed03k4ZBJ6woD9n6QK4xeHnqksllm0kkwg401hMq",
+        "expirationTime": null,
+        "keys": {
+          "p256dh": "BILVwyHnIXh6jW2o2Y0UhijBDPrqFh6Vr2tmkM7gWiledRio2iRwPTSdZ-e9koEdmXPolEQ1POuemxice-uatec",
+          "auth": "MQUm7lms48_GKxtYZwd2Jw"
+        }
+      },
+      "createdAt": "2026-03-25T05:51:01.183Z"
+    },
+    {
+      "id": "mn5mq8in4b9dm8",
+      "username": "Karime",
+      "email": "karime@example.com",
+      "password": "Karime123",
+      "friendCode": "GC6DT6SF",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": {
+        "endpoint": "https://wns2-bn3p.notify.windows.com/w/?token=BQYAAAC4rD%2bP9r5EZyhbCCGzOLoee0PGlVQqHMNJXEMtq%2fULuklezi8KL2nzJK57xQbGfqG6ORO7zHBTL%2bKV1pi%2brdSLATmGfqNbXRb%2flazLLakSEbgbACGB77Dv882Z%2buCaVKpGHanM9QaDyxCsP32Qgv0rugsERycelKDIGi7AfD9q0ST3QIr1oUFGSgtP2jHs5sqI9gPpMg1pjQzhK5insZjP6N7RyMx9NHVv1pt79Mm3MX3fwN%2fOS605CRQRItVam5Ehv2IKWGG9iw%2fGOn5zQB0tVTFfBH3LP3xCAVxae9RDpfc4Ed03k4ZBJ6woD9n6QK4xeHnqksllm0kkwg401hMq",
+        "expirationTime": null,
+        "keys": {
+          "p256dh": "BILVwyHnIXh6jW2o2Y0UhijBDPrqFh6Vr2tmkM7gWiledRio2iRwPTSdZ-e9koEdmXPolEQ1POuemxice-uatec",
+          "auth": "MQUm7lms48_GKxtYZwd2Jw"
+        }
+      },
+      "createdAt": "2026-03-25T05:55:10.368Z"
+    },
+    {
+      "id": "mn5mrjxkparxbs",
+      "username": "Omar",
+      "email": "omar@example.com",
+      "password": "Omar123",
+      "friendCode": "L2M7NVC2",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": null,
+      "createdAt": "2026-03-25T05:56:11.816Z"
+    },
+    {
+      "id": "mn8fgqloaf7y0q",
+      "username": "EntrenadorPrueba",
+      "email": "test@entrenador.com",
+      "password": "mypassword123",
+      "friendCode": "WRA73KS9",
+      "avatar": null,
+      "team": [],
+      "pushSubscription": null,
+      "createdAt": "2026-03-27T04:55:08.462Z"
+    }
+  ],
+  "friends": [
+    {
+      "id": "mn5m1zfd1k0jzn",
+      "fromUserId": "mn5m0xstmn9g1b",
+      "toUserId": "mn5m0vm58kmn4o",
+      "status": "pending",
+      "createdAt": "2026-03-25T05:36:18.841Z"
+    },
+    {
+      "id": "mn5mlr0z52bp4z",
+      "fromUserId": "mn5m0vm58kmn4o",
+      "toUserId": "mn5mkw8usudnrj",
+      "status": "pending",
+      "createdAt": "2026-03-25T05:51:41.075Z"
+    },
+    {
+      "id": "mn5mtwf4a6vnsp",
+      "fromUserId": "mn5mq8in4b9dm8",
+      "toUserId": "mn5mrjxkparxbs",
+      "status": "pending",
+      "createdAt": "2026-03-25T05:58:01.313Z"
+    }
+  ],
+  "battles": []
+}
