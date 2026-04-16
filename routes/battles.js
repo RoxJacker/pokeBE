@@ -24,6 +24,11 @@ export function setSendPush(fn) {
   sendPushToUser = fn
 }
 
+let io = null
+export function setIo(ioInstance) {
+  io = ioInstance
+}
+
 router.post('/challenge', authMiddleware, async (req, res) => {
   try {
     const { friendId } = req.body
@@ -89,6 +94,15 @@ router.post('/:id/accept', authMiddleware, async (req, res) => {
   if (battle.status !== 'pending') return res.status(400).json({ error: 'La batalla ya fue procesada.' })
 
   const updated = await updateBattle(battle.id, { status: 'accepted' })
+
+  // Notify via socket
+  if (io) {
+    io.to(`battle:${battle._id.toString()}`).emit('battle-accepted', {
+      battleId: battle._id.toString(),
+      status: 'accepted',
+    })
+  }
+
   res.json({ message: 'Reto aceptado. Selecciona tu equipo.', battle: updated })
 })
 
@@ -98,6 +112,15 @@ router.post('/:id/decline', authMiddleware, async (req, res) => {
   if (battle.challengedId.toString() !== req.user.id.toString()) return res.status(403).json({ error: 'No autorizado.' })
 
   const updated = await updateBattle(battle.id, { status: 'declined' })
+
+  // Notify via socket
+  if (io) {
+    io.to(`battle:${battle._id.toString()}`).emit('battle-update', {
+      battleId: battle._id.toString(),
+      status: 'declined',
+    })
+  }
+
   res.json({ message: 'Reto rechazado.', battle: updated })
 })
 
@@ -199,6 +222,19 @@ router.post('/:id/start', authMiddleware, async (req, res) => {
           type: 'batalla-inicio',
           message: `¡La batalla contra ${req.user.username} ha comenzado!`,
           url: `/battle/${battle.id}`,
+        })
+      }
+
+      // Notify both players via socket that the battle started
+      if (io) {
+        const p1Id = state.players[0].userId
+        const p2Id = state.players[1].userId
+        io.to(`battle:${battle._id.toString()}`).emit('battle-started', {
+          battleId: battle._id.toString(),
+          state: {
+            [p1Id]: sanitizeBattleState(state, p1Id),
+            [p2Id]: sanitizeBattleState(state, p2Id),
+          },
         })
       }
 

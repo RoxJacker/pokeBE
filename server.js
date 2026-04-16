@@ -4,6 +4,8 @@
  */
 
 import express from 'express'
+import { createServer } from 'http'
+import { Server } from 'socket.io'
 import cors from 'cors'
 import webpush from 'web-push'
 import dotenv from 'dotenv'
@@ -14,8 +16,9 @@ import mongoose from 'mongoose'
 import authRoutes from './routes/auth.js'
 import usersRoutes from './routes/users.js'
 import friendsRoutes, { setSendPush as setFriendsPush } from './routes/friends.js'
-import battlesRoutes, { setSendPush as setBattlesPush } from './routes/battles.js'
+import battlesRoutes, { setSendPush as setBattlesPush, setIo as setBattlesIo } from './routes/battles.js'
 import teamsRoutes from './routes/teams.js'
+import { initSocketHandler } from './socketHandler.js'
 
 dotenv.config()
 
@@ -26,6 +29,7 @@ mongoose.connect(mongoUri)
   .catch(err => console.error('\n❌ Error conectando a MongoDB:', err))
 
 const app = express()
+const httpServer = createServer(app)
 
 // CORS: Allow frontend from Railway or localhost
 const allowedOrigins = process.env.FRONTEND_URL
@@ -82,9 +86,27 @@ function sendPushToUser(subscription, data) {
   })
 }
 
-// Inject push function into route modules
+// ── Socket.io ─────────────────────────────────────────────
+const io = new Server(httpServer, {
+  cors: {
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+        callback(null, true)
+      } else {
+        callback(null, true) // Permissive for PWA
+      }
+    },
+    credentials: true,
+  },
+})
+
+initSocketHandler(io, sendPushToUser)
+console.log('[Server] Socket.io montado ✔')
+
+// Inject push function and io into route modules
 setFriendsPush(sendPushToUser)
 setBattlesPush(sendPushToUser)
+setBattlesIo(io)
 
 // ── Routes ────────────────────────────────────────────────────
 app.get('/', (req, res) => {
@@ -144,7 +166,7 @@ app.post('/api/test/send-push', async (req, res) => {
 
 // ── Start ─────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`\n🚀 PokePWA API Server en http://localhost:${PORT}`)
   console.log(`   Auth:    /api/auth`)
   console.log(`   Users:   /api/users`)
