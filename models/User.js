@@ -12,6 +12,13 @@ const teamSchema = new mongoose.Schema({
   moves: [mongoose.Schema.Types.Mixed]
 })
 
+const favoriteSchema = new mongoose.Schema({
+  pokemonId: { type: Number, required: true },
+  nickname: { type: String, default: '' },
+  notes: { type: String, default: '' },
+  addedAt: { type: Date, default: Date.now }
+}, { _id: false })
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -19,6 +26,7 @@ const userSchema = new mongoose.Schema({
   friendCode: { type: String, required: true, unique: true },
   avatar: { type: String, default: null },
   team: { type: [teamSchema], default: [] },
+  favorites: { type: [favoriteSchema], default: [] },
 
   pushSubscription: { type: mongoose.Schema.Types.Mixed, default: null }
 }, { timestamps: true, collection: 'usuarios' })

@@ -6,7 +6,7 @@
 import User from './models/User.js'
 import Friend from './models/Friend.js'
 import Battle from './models/Battle.js'
-import Favorite from './models/Favorite.js'
+
 
 // ── Helpers ──────────────────────────────────────────────
 function generateFriendCode() {
@@ -56,39 +56,37 @@ export async function sanitizeUser(userDoc) {
   delete safe._id
   delete safe.__v
   if (!safe.team) safe.team = []
-  
-  const favs = await Favorite.find({ userId: safe.id }).select('-_id -__v -userId -updatedAt -createdAt').lean()
-  safe.favorites = favs || []
+  if (!safe.favorites) safe.favorites = []
   
   return safe
 }
 
 export async function toggleFavorite(userId, pokemonId) {
-  const existing = await Favorite.findOne({ userId, pokemonId })
-  if (existing) {
-    await Favorite.findByIdAndDelete(existing._id)
+  const user = await User.findById(userId)
+  if (!user) return []
+  
+  const idx = user.favorites.findIndex(f => f.pokemonId === pokemonId)
+  if (idx !== -1) {
+    user.favorites.splice(idx, 1)
   } else {
-    await Favorite.create({ userId, pokemonId })
+    user.favorites.push({ pokemonId, addedAt: new Date() })
   }
-  const allFavs = await Favorite.find({ userId }).select('-_id -__v -userId -updatedAt -createdAt').lean()
-  return allFavs
+  await user.save()
+  return user.favorites
 }
 
 export async function updateFavoriteCharacteristics(userId, pokemonId, updates) {
-  const fav = await Favorite.findOne({ userId, pokemonId })
+  const user = await User.findById(userId)
+  if (!user) return null
+  
+  const fav = user.favorites.find(f => f.pokemonId === pokemonId)
   if (!fav) return null
   
   if (updates.nickname !== undefined) fav.nickname = updates.nickname
   if (updates.notes !== undefined) fav.notes = updates.notes
   
-  await fav.save()
-  const obj = fav.toObject()
-  delete obj._id
-  delete obj.__v
-  delete obj.userId
-  delete obj.createdAt
-  delete obj.updatedAt
-  return obj
+  await user.save()
+  return fav
 }
 
 // ── Friends ──────────────────────────────────────────────
