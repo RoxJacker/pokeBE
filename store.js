@@ -35,8 +35,10 @@ export async function findUserByEmail(email) {
 }
 
 export async function findUserById(id) {
-  if (!id.match(/^[0-9a-fA-F]{24}$/)) return null // Catch invalid objectId
-  return await User.findById(id)
+  if (!id) return null
+  const idStr = typeof id === 'object' ? id.toString() : String(id)
+  if (!idStr.match(/^[0-9a-fA-F]{24}$/)) return null // Catch invalid objectId
+  return await User.findById(idStr)
 }
 
 export async function findUserByFriendCode(code) {
@@ -111,8 +113,10 @@ export async function getFriends(userId) {
 }
 
 export async function findFriendById(id) {
-  if (!id.match(/^[0-9a-fA-F]{24}$/)) return null
-  return await Friend.findById(id)
+  if (!id) return null
+  const idStr = typeof id === 'object' ? id.toString() : String(id)
+  if (!idStr.match(/^[0-9a-fA-F]{24}$/)) return null
+  return await Friend.findById(idStr)
 }
 
 export async function updateFriend(id, updates) {
@@ -137,8 +141,10 @@ export async function getBattles(userId) {
 }
 
 export async function findBattleById(id) {
-  if (!id.match(/^[0-9a-fA-F]{24}$/)) return null
-  return await Battle.findById(id)
+  if (!id) return null
+  const idStr = typeof id === 'object' ? id.toString() : String(id)
+  if (!idStr.match(/^[0-9a-fA-F]{24}$/)) return null
+  return await Battle.findById(idStr)
 }
 
 export async function updateBattle(id, updates) {
