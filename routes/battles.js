@@ -283,7 +283,12 @@ router.post('/:id/turn', authMiddleware, async (req, res) => {
 
     state.pendingMoves = {}
 
-    await updateBattle(battle.id, { state, status: battle.status })
+    if (state.status === 'finished') {
+      battle.status = 'finished'
+      battle.winnerId = state.winnerId
+    }
+
+    await updateBattle(battle.id, { state, status: battle.status, winnerId: battle.winnerId })
 
     const otherUserId = userIdStr === p1Id ? p2Id : p1Id
     const otherUser = await findUserById(otherUserId)

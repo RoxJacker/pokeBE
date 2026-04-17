@@ -101,7 +101,11 @@ export function initSocketHandler(io, sendPushToUser) {
           state.log.push({ turn: state.turn - 1, events })
           state.pendingMoves = {}
 
-          await updateBattle(battle.id, { state, status: battle.status })
+          if (state.status === 'finished') {
+            battle.status = 'finished'
+            battle.winnerId = state.winnerId
+          }
+          await updateBattle(battle.id, { state, status: battle.status, winnerId: battle.winnerId })
 
           // Emit resolved turn to BOTH players in the room
           io.to(room).emit('turn-resolved', {
