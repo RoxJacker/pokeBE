@@ -67,6 +67,14 @@ export async function toggleFavorite(userId, pokemonId) {
   const user = await User.findById(userId)
   if (!user) return []
   
+  // Clean duplicates first in case any slipped through
+  const seen = new Set()
+  user.favorites = user.favorites.filter(f => {
+    if (seen.has(f.pokemonId)) return false
+    seen.add(f.pokemonId)
+    return true
+  })
+  
   const idx = user.favorites.findIndex(f => f.pokemonId === pokemonId)
   if (idx !== -1) {
     user.favorites.splice(idx, 1)
